@@ -5,145 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Чтение текста</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #FFF8E1;
-            font-family: 'Arial', sans-serif;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: #FFF3E0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .highlighted-word {
-            color: green;
-        }
-        .dimmed-text {
-            color: grey;
-        }
-        h2 {
-            text-align: center;
-            color: #FF8A65;
-        }
-        button {
-            background-color: #FF8A65;
-            color: white;
-            border: none;
-        }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .word-container {
-            font-size: 22px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Ваш текст</h2>
+        <!--h2>Ваш текст</h2-->
         <p id="textDisplay" class="word-container"></p>
         <div class="controls">
             <button id="prev" class="btn">Назад</button>
             <button id="next" class="btn">Вперед</button>
         </div>
     </div>
-
-    <script>
-        let text = localStorage.getItem('text');
-        let words = text.split(/\s+/);
-        let currentIndex = -1;
-
-        const textDisplay = document.getElementById('textDisplay');
-        const prevBtn = document.getElementById('prev');
-        const nextBtn = document.getElementById('next');
-        let currentWordElement = null;
-        let currentWordSyllables = [];
-        let syllableIndex = 0;
-
-        function displayText() {
-            textDisplay.innerHTML = words.map((word, index) => 
-                `<span class="word" data-index="${index}">${word}</span>`
-            ).join(' ');
-        }
-
-        function highlightWord(index) {
-            if (currentWordElement) {
-                currentWordElement.classList.remove('highlighted-word');
-            }
-
-            const wordsSpans = document.querySelectorAll('.word');
-            currentWordElement = wordsSpans[index];
-            currentWordElement.classList.add('highlighted-word');
-
-            wordsSpans.forEach((span, i) => {
-                if (i !== index) {
-                    span.classList.add('dimmed-text');
-                } else {
-                    span.classList.remove('dimmed-text');
-                }
-            });
-
-            // Расчёт слогов для текущего слова
-            currentWordSyllables = splitIntoSyllables(words[index]);
-            syllableIndex = 0;
-        }
-
-        function splitIntoSyllables(word) {
-            let vowels = 'аеёиоуыэюя';
-            let syllables = [];
-            let syllable = '';
-
-            for (let i = 0; i < word.length; i++) {
-                let char = word[i];
-                syllable += char;
-
-                if (vowels.includes(char.toLowerCase()) || (i > 0 && !vowels.includes(word[i - 1].toLowerCase()))) {
-                    syllables.push(syllable);
-                    syllable = '';
-                }
-            }
-
-            if (syllable) {
-                syllables.push(syllable);
-            }
-            return syllables;
-        }
-
-        function showNextStep() {
-            if (syllableIndex < currentWordSyllables.length) {
-                currentWordElement.innerHTML = currentWordSyllables
-                    .map((syllable, index) => 
-                        index === syllableIndex ? `<span class="highlighted-word">${syllable}</span>` : syllable)
-                    .join('-');
-                syllableIndex++;
-            } else {
-                highlightWord(++currentIndex);
-            }
-        }
-
-        function showPreviousStep() {
-            // Логика обратного хода (аналогична showNextStep, но для обратного направления)
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            displayText();
-
-            document.querySelectorAll('.word').forEach((span) => {
-                span.addEventListener('click', function () {
-                    currentIndex = parseInt(this.getAttribute('data-index'));
-                    highlightWord(currentIndex);
-                });
-            });
-
-            nextBtn.addEventListener('click', showNextStep);
-            prevBtn.addEventListener('click', showPreviousStep);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
