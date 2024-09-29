@@ -8,29 +8,42 @@ body {
     margin: auto;
     padding: 20px;
     background-color: #FFF3E0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
+
+#inputText {
+    background-color: #FFF3E0;
+    border-radius: 15px;
+    resize: none;
+    border: none;
+    font-size: 30px;
+    height: 80vh;
+}
+
 .highlighted-word {
     color: green;
 }
 .dimmed-text {
     color: grey;
 }
+
 h2 {
     text-align: center;
     color: #FF8A65;
 }
-button {
+
+button.btn {
     background-color: #FF8A65;
     color: white;
     border: none;
 }
+
 .controls {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
+
 .word-container {
     font-size: 22px;
 }
