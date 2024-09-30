@@ -20,16 +20,12 @@ body {
     height: 80vh;
 }
 
-.highlighted-word {
-    color: green;
-}
-.dimmed-text {
-    color: grey;
+article {
+    font-size: 30px
 }
 
-h2 {
-    text-align: center;
-    color: #FF8A65;
+.focused-text {
+    color: green;
 }
 
 button.btn {
@@ -44,6 +40,14 @@ button.btn {
     margin-top: 20px;
 }
 
-.word-container {
-    font-size: 22px;
+.paragraph {
+    margin-bottom: 20px;
+}
+.line {
+    margin: 0;
+}
+
+.word {
+    display: inline-block;
+    margin-right: 5px;
 }
