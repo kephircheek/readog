@@ -21,7 +21,9 @@ body {
 }
 
 article {
-    font-size: 30px
+    font-size: 30px;
+    height: 80vh;
+    overflow: scroll;
 }
 
 .focused-text {
