@@ -10,8 +10,18 @@
 <body>
     <div class="container">
         <textarea id="inputText" class="form-control mb-3" placeholder="Введите текст..."></textarea>
-        <button id="startReading" class="btn">Начать читать!</button>
+        <button id="startReading" class="btn" onclick="startReading()">Начать читать!</button>
     </div>
-    <script src="script.js"></script>
+    <script>
+        function startReading() {
+            const text = document.getElementById('inputText').value;
+            if (text.trim()) {
+                localStorage.setItem('text', text);
+                window.location.href = 'reader.html';
+            } else {
+                alert('Введите текст!');
+            }
+        }
+    </script>
 </body>
 </html>
