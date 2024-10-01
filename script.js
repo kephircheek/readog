@@ -34,23 +34,27 @@ function renderHTML(parsedText) {
             const lineGlobalIndex = `${paragraphGlobalIndex}.${lineIndex}`;
             lineElement.setAttribute("id", lineGlobalIndex);
             lineElement.classList.add("line");
-            line.forEach((word, wordIndex) => {
-                const wordElement = document.createElement("span");
-                const wordGlobalIndex = `${lineGlobalIndex}.${wordIndex}`;
-                wordElement.classList.add("word");
-                wordElement.setAttribute("id", wordGlobalIndex);
-                wordElement.addEventListener("click", () => {
-                    focusWord(wordGlobalIndex);
-                });
-                const [pureWord, punctuation] = splitWordAndPunctuation(word);
-                wordElement.textContent = pureWord;
-                lineElement.appendChild(wordElement);
+            let wordIndex = 0
+            line.forEach((part, partIndex) => {
+                const [word, punctuation] = splitWordAndPunctuation(part);
+                if (word !== "") {
+                    const wordElement = document.createElement("span");
+                    const wordGlobalIndex = `${lineGlobalIndex}.${wordIndex}`;
+                    wordElement.classList.add("word");
+                    wordElement.setAttribute("id", wordGlobalIndex);
+                    wordElement.addEventListener("click", () => {
+                        focusWord(wordGlobalIndex);
+                    });
+                    wordElement.textContent = word;
+                    lineElement.appendChild(wordElement);
+                    wordIndex++;
+                }
                 if (punctuation !== "") {
                     const punctuationNode =
                         document.createTextNode(punctuation);
                     lineElement.appendChild(punctuationNode);
                 }
-                if (wordIndex === line.length - 1) {
+                if (partIndex === line.length - 1) {
                     const brElement = document.createElement("br");
                     lineElement.appendChild(brElement);
                 } else {
@@ -151,7 +155,7 @@ function focusPreviousWord() {
 }
 
 function splitWordAndPunctuation(str) {
-    const match = str.trim().match(/(\p{L}+)(\W*)/u);
+    const match = str.trim().match(/(\p{L}*)(\W*)/u);
     return [match[1], match[2]];
 }
 
