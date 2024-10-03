@@ -1,96 +1,101 @@
 body {
-    background-color: #FFF8E1;
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    height: 100vh;
+  background-color: #fff8e1;
+  font-family: "Arial", sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  height: 100vh;
 }
 
 .rounded-rect {
-    border-radius: 7px;
+  border-radius: 7px;
 }
 
 main {
-    padding: 10px;
-    background-color: #FFF3E0;
-    height: 90%;
+  padding: 10px;
+  background-color: #fff3e0;
+  height: 90%;
 }
 
 #textInput {
-    background-color: #FFF3E0;
-    resize: none;
-    border: none;
-    font-size: 30px;
-    height: 97%;
+  background-color: #fff3e0;
+  resize: none;
+  border: none;
+  font-size: 30px;
+  height: 97%;
 }
 
 article {
-    font-size: 30px;
-    overflow: scroll;
-    height: 100%;
+  font-size: 30px;
+  overflow: scroll;
+  height: 100%;
 }
 
 .focused-text {
-    color: green;
+  color: green;
 }
 
 button.btn {
-    background-color: #FF8A65;
-    color: white;
-    border: none;
+  background-color: #ff8a65;
+  color: white;
+  border: none;
 }
 
 .controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .paragraph {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .line {
-    margin: 0;
+  margin: 0;
 }
 
 .word {
-    display: inline-block;
-    margin-right: 5px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 #imageInput {
-    display: none;
+  display: none;
 }
 
 .spinner {
-    display: none;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-top: 4px solid #3498db;
-    width: 20px;
-    height: 20px;
-    animation: spin 2s linear infinite;
+  display: none;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner.show {
-    display: inline-block;
+  display: inline-block;
 }
 
 .dimmed-text {
-    color: #f0f0f0;
+  color: #f0f0f0;
 }
 
 .unresponsive {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .no-select {
-    user-select: none;
-    cursor: default;
+  user-select: none;
+  cursor: default;
 }
+
