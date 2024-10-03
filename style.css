@@ -17,12 +17,12 @@ main {
     height: 90%;
 }
 
-#inputText {
+#textInput {
     background-color: #FFF3E0;
     resize: none;
     border: none;
     font-size: 30px;
-    height: 100%;
+    height: 97%;
 }
 
 article {
@@ -57,4 +57,40 @@ button.btn {
 .word {
     display: inline-block;
     margin-right: 5px;
+}
+
+#imageInput {
+    display: none;
+}
+
+.spinner {
+    display: none;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner.show {
+    display: inline-block;
+}
+
+.dimmed-text {
+    color: #f0f0f0;
+}
+
+.unresponsive {
+    pointer-events: none;
+}
+
+.no-select {
+    user-select: none;
+    cursor: default;
 }
