@@ -36,7 +36,11 @@ function renderHTML(parsedText) {
             lineElement.classList.add("line");
             let wordIndex = 0
             line.forEach((part, partIndex) => {
-                const [word, punctuation] = splitWordAndPunctuation(part);
+                const [quote, word, punctuation] = splitWordAndPunctuation(part);
+                if (quote !== "") {
+                    const quoteNode = document.createTextNode(quote);
+                    lineElement.appendChild(quoteNode);
+                }
                 if (word !== "") {
                     const wordElement = document.createElement("span");
                     const wordGlobalIndex = `${lineGlobalIndex}.${wordIndex}`;
@@ -155,8 +159,8 @@ function focusPreviousWord() {
 }
 
 function splitWordAndPunctuation(str) {
-    const match = str.trim().match(/(\p{L}*)(\W*)/u);
-    return [match[1], match[2]];
+    const match = str.trim().match(/^([^\p{L}]*)([\p{L}-]+)([^\p{L}]*$)/u);
+    return [match[1], match[2], match[3]];
 }
 
 function splitOnFragments(word) {
