@@ -159,7 +159,7 @@ function focusPreviousWord() {
 }
 
 function splitWordAndPunctuation(str) {
-    const match = str.trim().match(/^([^\p{L}]*)([\p{L}-]+)([^\p{L}]*$)/u);
+    const match = str.trim().match(/^([^\p{L}]*)([\p{L}-]*)([^\p{L}]*$)/u);
     return [match[1], match[2], match[3]];
 }
 
