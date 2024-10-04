@@ -184,6 +184,13 @@ function splitOffOneFragment(word) {
     return [word.slice(0, 2), word.slice(2)];
 }
 
+
+function strip_dash(str) {
+    if (str === null) return null
+    return str.replace(/^-+|-+$/g, '');
+}
+
+
 function generateWordForms(word) {
     let forms = [word];
     const fragments = splitOnFragments(word);
@@ -192,31 +199,32 @@ function generateWordForms(word) {
         return forms;
     }
     for (let i = 0; i < fragments.length; i++) {
+        if (fragments[i] === "-") continue
         switch (i) {
             case 0:
                 forms.push([
                     null,
                     fragments[i],
-                    fragments.slice(i + 1).join(""),
+                    strip_dash(fragments.slice(i + 1).join("")),
                 ]);
                 break;
             case fragments.length - 1:
                 forms.push([
-                    fragments.slice(0, i).join(""),
+                    strip_dash(fragments.slice(0, i).join("")),
                     fragments[i],
                     null,
                 ]);
                 break;
             default:
                 forms.push([
-                    fragments.slice(0, i).join(""),
+                    strip_dash(fragments.slice(0, i).join("")),
                     fragments[i],
-                    fragments.slice(i + 1).join(""),
+                    strip_dash(fragments.slice(i + 1).join("")),
                 ]);
                 forms.push([
                     null,
                     fragments.slice(0, i + 1).join(""),
-                    fragments.slice(i + 1).join(""),
+                    strip_dash(fragments.slice(i + 1).join("")),
                 ]);
                 break;
         }
