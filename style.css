@@ -26,13 +26,14 @@ main {
 }
 
 article {
+  color: #333333;
   font-size: 30px;
   overflow: scroll;
   height: 100%;
 }
 
 .focused-text {
-  color: green;
+  color: #ff8a65;
 }
 
 button.btn {
