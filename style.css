@@ -37,6 +37,7 @@ article {
 }
 
 button.btn {
+  touch-action: manipulation;
   background-color: #ff8a65;
   color: white;
   border: none;
