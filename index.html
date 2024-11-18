@@ -24,6 +24,11 @@
       <button id="startReading" class="btn rounded-rect" onclick="startReading()">Начать читать!</button>
     </div>
     <script>
+      navigator.clipboard
+        .readText()
+        .then(
+          (text) => (document.getElementById("textInput").value = text),
+        );
       function startReading() {
         const text = document.getElementById("textInput").value;
         if (text.trim()) {
