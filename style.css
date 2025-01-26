@@ -43,6 +43,10 @@ button.btn {
   border: none;
 }
 
+button.btn.mute{
+  background-color: gray;
+}
+
 .controls {
   display: flex;
   justify-content: space-between;

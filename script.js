@@ -15,6 +15,11 @@ let focusedWordId = null;
 let focusedWordForms = null;
 let focusedWordFormNumber = 0;
 
+function toogleMic() {
+    toogleMicBtn = document.getElementById("toogleMic");
+    toogleMicBtn.classList.toggle("mute");
+}
+
 function parseText(text) {
     const paragraphs = text.trim().split(/\n\s*\n/);
     return paragraphs.map((paragraph) => {
