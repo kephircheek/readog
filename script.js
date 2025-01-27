@@ -15,9 +15,46 @@ let focusedWordId = null;
 let focusedWordForms = null;
 let focusedWordFormNumber = 0;
 
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+
+var recognition = new SpeechRecognition();
+recognition.continuous = true;
+recognition.lang = 'ru-RU';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
+let i_recognition_result = 0;
+
+
+recognition.onresult = function(event) {
+  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+  // It has a getter so it can be accessed like an array
+  // The first [0] returns the SpeechRecognitionResult at the last position.
+  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+  // These also have getters so they can be accessed like arrays.
+  // The second [0] returns the SpeechRecognitionAlternative at position 0.
+  // We then return the transcript property of the SpeechRecognitionAlternative object
+  var recognized = event.results[i_recognition_result][0].transcript;
+  i_recognition_result++;
+  console.log(i_recognition_result + ' Recognized: ' + recognized.split(" "));
+
+  if (focusedWordId === null) {
+    focusWord("0.0.0");
+  }
+  word = document.getElementById(focusedWordId).innerHTML.toLowerCase();
+  if (recognized.split(" ").includes(word)) {
+    focusNextWord();
+  }
+}
+
 function toogleMic() {
     toogleMicBtn = document.getElementById("toogleMic");
     toogleMicBtn.classList.toggle("mute");
+    toogleMicBtn.classList.contains("mute") ? recognition.stop() : recognition.start();
+    i_recognition_result = 0;
 }
 
 function parseText(text) {
