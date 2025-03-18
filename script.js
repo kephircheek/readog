@@ -22,11 +22,13 @@ const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpe
 var recognition = new SpeechRecognition();
 recognition.continuous = true;
 recognition.lang = 'ru-RU';
-recognition.interimResults = false;
+recognition.interimResults = true;
 recognition.maxAlternatives = 1;
 
-let i_recognition_result = 0;
 
+// recognition.onend = function() {
+//     recognition.start();
+// };
 
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
@@ -37,15 +39,14 @@ recognition.onresult = function(event) {
   // These also have getters so they can be accessed like arrays.
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
-  var recognized = event.results[i_recognition_result][0].transcript;
-  i_recognition_result++;
-  console.log(i_recognition_result + ' Recognized: ' + recognized.split(" "));
+  var recognized = event.results[event.resultIndex][0].transcript.trim();
+  console.log(event.resultIndex + ' Recognized: ' + recognized.split(" "));
 
   if (focusedWordId === null) {
     focusWord("0.0.0");
   }
   word = document.getElementById(focusedWordId).innerHTML.toLowerCase();
-  if (recognized.split(" ").includes(word)) {
+  if (recognized.toLowerCase().split(" ").includes(word)) {
     focusNextWord();
   }
 }
@@ -54,7 +55,7 @@ function toogleMic() {
     toogleMicBtn = document.getElementById("toogleMic");
     toogleMicBtn.classList.toggle("mute");
     toogleMicBtn.classList.contains("mute") ? recognition.stop() : recognition.start();
-    i_recognition_result = 0;
+    toogleMicBtn.classList.contains("mute") ? recognition.onend = null : recognition.onend = recognition.start;
 }
 
 function parseText(text) {
