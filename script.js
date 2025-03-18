@@ -45,10 +45,14 @@ recognition.onresult = function(event) {
   if (focusedWordId === null) {
     focusWord("0.0.0");
   }
-  word = document.getElementById(focusedWordId).innerHTML.toLowerCase();
-  if (recognized.toLowerCase().split(" ").includes(word)) {
-    focusNextWord();
-  }
+  recognized.toLowerCase().split(" ").forEach(
+      function (recognized_word) {
+        word = document.getElementById(focusedWordId).innerHTML.toLowerCase();
+        if (word === recognized_word) {
+          focusNextWord();
+        }
+      }
+  )
 }
 
 function toogleMic() {
