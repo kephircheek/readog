@@ -25,10 +25,13 @@ recognition.lang = 'ru-RU';
 recognition.interimResults = true;
 recognition.maxAlternatives = 1;
 
-
-// recognition.onend = function() {
-//     recognition.start();
-// };
+recognition.onerror = function(event) {
+    toogleMic()
+    console.error('Ошибка распознования речи: ', event.error);
+    if (event.error === "network") {
+        alert("Отсутсвует подключение к интернету!")
+    }
+};
 
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
