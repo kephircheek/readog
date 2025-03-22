@@ -34,7 +34,7 @@ function renderHTML(parsedText) {
             const lineGlobalIndex = `${paragraphGlobalIndex}.${lineIndex}`;
             lineElement.setAttribute("id", lineGlobalIndex);
             lineElement.classList.add("line");
-            let wordIndex = 0
+            let wordIndex = 0;
             line.forEach((part, partIndex) => {
                 const [quote, word, punctuation] = splitWordAndPunctuation(part);
                 if (quote !== "") {
@@ -111,6 +111,7 @@ function unFocusReader() {
             break;
         case ReaderState.PARAGRAPH_FOCUS:
             unFocusById(getParagraphIndex(focusedWordId));
+            break;
     }
 }
 
@@ -168,7 +169,7 @@ function splitOnFragments(word) {
     if (remains.length === 0) {
         return [fragment];
     }
-    let fragments = splitOnFragments(remains);
+    const fragments = splitOnFragments(remains);
     fragments.unshift(fragment);
     return fragments;
 }
@@ -184,47 +185,45 @@ function splitOffOneFragment(word) {
     return [word.slice(0, 2), word.slice(2)];
 }
 
-
-function strip_dash(str) {
-    if (str === null) return null
-    return str.replace(/^-+|-+$/g, '');
+function stripDash(str) {
+    if (str === null) return null;
+    return str.replace(/^-+|-+$/g, "");
 }
 
-
 function generateWordForms(word) {
-    let forms = [word];
+    const forms = [word];
     const fragments = splitOnFragments(word);
     console.log(fragments);
     if (fragments.length === 1) {
         return forms;
     }
     for (let i = 0; i < fragments.length; i++) {
-        if (fragments[i] === "-") continue
+        if (fragments[i] === "-") continue;
         switch (i) {
             case 0:
                 forms.push([
                     null,
                     fragments[i],
-                    strip_dash(fragments.slice(i + 1).join("")),
+                    stripDash(fragments.slice(i + 1).join("")),
                 ]);
                 break;
             case fragments.length - 1:
                 forms.push([
-                    strip_dash(fragments.slice(0, i).join("")),
+                    stripDash(fragments.slice(0, i).join("")),
                     fragments[i],
                     null,
                 ]);
                 break;
             default:
                 forms.push([
-                    strip_dash(fragments.slice(0, i).join("")),
+                    stripDash(fragments.slice(0, i).join("")),
                     fragments[i],
-                    strip_dash(fragments.slice(i + 1).join("")),
+                    stripDash(fragments.slice(i + 1).join("")),
                 ]);
                 forms.push([
                     null,
                     fragments.slice(0, i + 1).join(""),
-                    strip_dash(fragments.slice(i + 1).join("")),
+                    stripDash(fragments.slice(i + 1).join("")),
                 ]);
                 break;
         }
@@ -235,15 +234,15 @@ function generateWordForms(word) {
 
 function focusFragment() {
     readerState = ReaderState.FRAGMENT_FOCUS;
-    let [waited, focused, remains] = focusedWordForms[focusedWordFormNumber];
-    let wordElement = document.getElementById(focusedWordId);
+    const [waited, focused, remains] = focusedWordForms[focusedWordFormNumber];
+    const wordElement = document.getElementById(focusedWordId);
     wordElement.innerHTML = "";
     if (waited !== null) {
-        let waitedElement = document.createElement("span");
+        const waitedElement = document.createElement("span");
         waitedElement.textContent = waited + "-";
         wordElement.appendChild(waitedElement);
     }
-    let focusedElement = document.createElement("span");
+    const focusedElement = document.createElement("span");
     focusedElement.textContent = focused;
     focusedElement.classList.add("focused-text");
     wordElement.appendChild(focusedElement);
@@ -285,6 +284,7 @@ function rewind() {
             break;
         case ReaderState.WORD_FOCUS:
             focusPreviousWord();
+            break;
         case ReaderState.FRAGMENT_FOCUS:
             focusedWordFormNumber--;
             if (focusedWordFormNumber === 0) {
