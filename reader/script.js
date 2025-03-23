@@ -1,6 +1,12 @@
-document
-    .getElementById("textDisplay")
-    .appendChild(renderHTML(parseText(localStorage.getItem("text"))));
+const story = getStory(new URLSearchParams(window.location.search).get("md5"));
+if (!story?.text) {
+    alert("Не удалось найти текст!");
+    window.location.href = "../index.html";
+} else {
+    document
+        .getElementById("textDisplay")
+        .appendChild(renderHTML(parseText(story.text)));
+}
 
 const ReaderState = Object.freeze({
     NO_FOCUS: 0,

@@ -10,8 +10,8 @@ navigator.clipboard
 function startReading() {
     const text = document.getElementById("textInput").value;
     if (text.trim()) {
-        localStorage.setItem("text", text);
-        window.location.href = "../reader/index.html";
+        const md5_hash = storeStory(text);
+        window.location.href = "../reader/index.html?md5=" + md5_hash;
     } else {
         alert("Введите текст!");
     }
@@ -73,3 +73,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function calculateMD5(text) {
+    return CryptoJS.MD5(text).toString();
+}
+
+function storeStory(text) {
+    const md5 = calculateMD5(text);
+    const key = storyKey(md5);
+
+    localStorage.setItem(key, JSON.stringify({
+        md5: md5,
+        text: text
+    }));
+
+    return md5;
+}
