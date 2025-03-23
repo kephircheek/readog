@@ -1,6 +1,7 @@
 header {
   background: #fdfbf2;
   width: 100%;
+  box-sizing: border-box;
 }
 
 body {
@@ -110,4 +111,5 @@ footer {
   padding: 5px;
   color: black;
   margin-top: auto;
+  box-sizing: border-box;
 }
