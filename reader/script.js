@@ -1,11 +1,11 @@
-const story = getStory(new URLSearchParams(window.location.search).get("md5"));
-if (!story?.text) {
-    alert("Не удалось найти текст!");
-    window.location.href = "../index.html";
-} else {
-    document
-        .getElementById("textDisplay")
-        .appendChild(renderHTML(parseText(story.text)));
+function prependToStoryHistory(md5) {
+    const history = JSON.parse(localStorage.getItem(storyHistoryKey())) || [];
+    history.unshift(md5);
+    const uniqueHistory = [...new Set(history)];
+    if (uniqueHistory.length > 5) {
+        uniqueHistory.pop();
+    }
+    localStorage.setItem(storyHistoryKey(), JSON.stringify(uniqueHistory));
 }
 
 const ReaderState = Object.freeze({
