@@ -43,7 +43,8 @@ function hideSpinner() {
     });
 }
 
-document.getElementById('imageInput').addEventListener('change', function(event) {
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('imageInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -69,5 +70,6 @@ document.getElementById('imageInput').addEventListener('change', function(event)
             });
         };
         reader.readAsDataURL(file);
-    }
+        }
+    });
 });
