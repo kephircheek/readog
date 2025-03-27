@@ -4,7 +4,6 @@ function createEntryFromStory(rootPath, story) {
     const title = firstLine + (firstLine.length > 50 ? '...' : '');
     const li = document.createElement('li');
     li.className = 'option';
-    li.id = story.id;
     li.innerHTML = `
         <a class="btn" href="${rootPath}reader/index.html?md5=${story.md5}">
             ${title}
