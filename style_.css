@@ -29,6 +29,10 @@ main {
   gap: 15px;
 }
 
+p {
+  margin: 0;
+}
+
 .options {
   font-size: 16px;
   user-select: none;
@@ -98,6 +102,7 @@ button {
   flex: 1;
   min-height: 0;
   height: 100%;
+  contain: strict;
 }
 
 footer {

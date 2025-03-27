@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "../index.html";
     } else {
         prependToStoryHistory(story.md5);
-        document
-            .getElementById("textDisplay")
-            .appendChild(renderHTML(parseText(story.text)));
+        const textDisplay = document.getElementById("textDisplay");
+        textDisplay.replaceChildren(...renderHTML(parseText(story.text)));
     }
 });

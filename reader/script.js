@@ -29,7 +29,7 @@ function parseText(text) {
 }
 
 function renderHTML(parsedText) {
-    const container = document.createElement("article");
+    const elements = [];
     parsedText.forEach((paragraph, paragraphIndex) => {
         const paragraphElement = document.createElement("p");
         const paragraphGlobalIndex = `${paragraphIndex}`;
@@ -74,9 +74,9 @@ function renderHTML(parsedText) {
             });
             paragraphElement.appendChild(lineElement);
         });
-        container.appendChild(paragraphElement);
+        elements.push(paragraphElement);
     });
-    return container;
+    return elements;
 }
 
 function getLineIndex(wordIndex) {

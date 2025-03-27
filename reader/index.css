@@ -1,0 +1,20 @@
+main > nav.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.paragraph {
+  margin-bottom: 20px;
+}
+
+.line {
+  margin: 0;
+}
+
+.word {
+  margin-right: 5px;
+}
+
+.focused-text {
+  color: #ff8a65;
+}
