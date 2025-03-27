@@ -4,8 +4,8 @@
   "description": "Читакса",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#fff8e1",
-  "theme_color": "#fff3e0",
+  "background_color": "#fdfbf2",
+  "theme_color": "#fdfbf2",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
