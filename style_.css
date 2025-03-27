@@ -48,7 +48,7 @@ ul, li {
 }
 
 .btn {
-  color: black;
+  color: #34495e;
   display: block;
   height: 100%;
   transition: transform 0.2s;
@@ -61,7 +61,6 @@ ul, li {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  color: inherit;
 }
 
 .btn * {
@@ -72,7 +71,6 @@ ul, li {
 a,
 a:link,
 a:visited {
-  color: inherit;
   pointer-events: auto;
   text-decoration: none;
 }
@@ -87,7 +85,6 @@ button {
 }
 
 .definite {
-  color: #34495e;
   font-weight: bold;
 }
 
