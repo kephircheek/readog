@@ -4,4 +4,11 @@
     height: auto;
     display: block;
     margin: 20px auto 0 auto;
-} 
+}
+
+@media (min-width: 600px) {
+  main > nav > ul.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
