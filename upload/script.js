@@ -1,7 +1,7 @@
 navigator.clipboard
     .readText()
     .then(text => {
-        document.getElementById("textInput").value = text;
+        document.getElementById("textInput").value = text.trim();
     })
     .catch(err => {
         console.error("Ошибка при чтении из буфера обмена:", err);
