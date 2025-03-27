@@ -88,6 +88,17 @@ button {
   font-weight: bold;
 }
 
+.text-field {
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: scroll;
+  font-size: inherit;
+  font-family: inherit;
+  display: block;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
 
 footer {
   font-size: 14px;
