@@ -1,11 +1,12 @@
 {
-  "name": "Читакса",
+  "name": "Читакса - Помощник в чтении для детей",
   "short_name": "Читакса",
-  "description": "Читакса",
+  "description": "Приложение для удобного чтения текста с подсветкой слов и слогов",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#fdfbf2",
   "theme_color": "#fdfbf2",
+  "categories": ["education", "books"],
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
