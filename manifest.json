@@ -3,6 +3,7 @@
   "short_name": "Читакса",
   "description": "Приложение для удобного чтения текста с подсветкой слов и слогов",
   "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#fdfbf2",
   "theme_color": "#fdfbf2",
