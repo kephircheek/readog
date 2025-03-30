@@ -10,6 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body * {
