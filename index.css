@@ -1,14 +1,8 @@
-.logo {
-    max-width: 800px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto 0 auto;
-}
-
-@media (min-width: 600px) {
-  main > nav.options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+.hero {
+  flex: 1;
+  margin-top: 10px;
+  background-image: url('img/dogs_read_books.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
