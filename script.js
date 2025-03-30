@@ -9,3 +9,11 @@ function storyHistoryKey() {
 function getStory(md5) {
     return JSON.parse(localStorage.getItem(storyKey(md5)));
 }
+
+function setRealViewportHeight() {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`)
+}
+
+setRealViewportHeight();
+window.addEventListener('resize', setRealViewportHeight);
+window.addEventListener('orientationchange', setRealViewportHeight);
