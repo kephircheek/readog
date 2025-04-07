@@ -5,7 +5,7 @@
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#fdfbf2",
+  "background_color": "#fff8e1",
   "theme_color": "#fdfbf2",
   "categories": ["education", "books"],
   "icons": [
