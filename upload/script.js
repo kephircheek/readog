@@ -78,10 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("textInput").addEventListener('focus', function(event) {
         event.target.value = 'innerHeight = ' + `${window.innerHeight}px`
     })
-    document.getElementById("textInput").addEventListener('blur', function(event) {
-        event.target.value = 'innerHeight = ' + `${window.innerHeight}px`
-    })
 })
+
+function showInnerHeight() {
+    const target = document.getElementById("textInput")
+    target.value = 'innerHeight = ' + `${window.innerHeight}px`
+}
 
 function calculateMD5(text) {
     return CryptoJS.MD5(text).toString();
