@@ -2,52 +2,43 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Текстовое поле и кнопка</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: sans-serif;
+      overflow: hidden;
     }
 
-    body {
+    .wrapper {
       display: flex;
       flex-direction: column;
-    }
-
-    .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      height: 100dvh; /* Используем 100% динамической высоты видимой области */
     }
 
     textarea {
       flex: 1;
-      resize: none;
       width: 100%;
       padding: 10px;
       font-size: 16px;
       border: none;
       outline: none;
+      resize: none;
     }
 
     .button-container {
-      position: sticky;
-      bottom: 0;
-      background: white;
+      width: 100%;
       padding: 10px;
-      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+      background: white;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       font-size: 16px;
       border: none;
       background-color: #007BFF;
@@ -57,11 +48,11 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrapper">
     <textarea placeholder="Введите текст..."></textarea>
-  </div>
-  <div class="button-container">
-    <button onclick="handleSubmit()">Отправить</button>
+    <div class="button-container">
+      <button onclick="handleSubmit()">Отправить</button>
+    </div>
   </div>
 
   <script>
@@ -70,10 +61,15 @@
       alert('Отправлено: ' + text);
     }
 
-    // Обработка ресайза для мобильных клавиатур
-    window.addEventListener('resize', () => {
-      document.body.style.height = window.innerHeight + 'px';
-    });
+    // Приведение wrapper к видимой высоте окна (обновляется при появлении клавиатуры)
+    function adjustHeight() {
+      document.querySelector('.wrapper').style.height = window.innerHeight + 'px';
+    }
+
+    window.addEventListener('resize', adjustHeight);
+    window.addEventListener('orientationchange', adjustHeight);
+    window.addEventListener('load', adjustHeight);
   </script>
 </body>
 </html>
+
