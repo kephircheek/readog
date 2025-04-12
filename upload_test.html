@@ -1,33 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Текстовое поле и кнопка</title>
   <style>
-    body, html {
-      margin: 0;
-      height: 100%;
-      display: grid;
-      grid-template-rows: 1fr auto;
+    * {
+      box-sizing: border-box;
     }
 
-    input {
-      padding: 10px;
-      box-sizing: border-box;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    textarea {
+      flex: 1;
+      resize: none;
       width: 100%;
-      resize: none; /* Запрет изменения размера поля */
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+    }
+
+    .button-container {
+      position: sticky;
+      bottom: 0;
+      background: white;
+      padding: 10px;
+      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
     }
 
     button {
-      height: 50px;
-      background-color: #007bff;
-      color: white;
-      border: none;
       width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <input type="text" placeholder="Введите текст...">
-  <button>Отправить</button>
+  <div class="container">
+    <textarea placeholder="Введите текст..."></textarea>
+  </div>
+  <div class="button-container">
+    <button onclick="handleSubmit()">Отправить</button>
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const text = document.querySelector('textarea').value;
+      alert('Отправлено: ' + text);
+    }
+
+    // Обработка ресайза для мобильных клавиатур
+    window.addEventListener('resize', () => {
+      document.body.style.height = window.innerHeight + 'px';
+    });
+  </script>
 </body>
 </html>
