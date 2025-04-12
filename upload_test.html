@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -16,7 +17,7 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-      height: 100dvh; /* Используем 100% динамической высоты видимой области */
+      height: 100%;
     }
 
     textarea {
@@ -30,11 +31,14 @@
     }
 
     .button-container {
-      width: 100%;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
       padding: 10px;
       background: white;
       box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-      position: relative;
+      transition: transform 0.2s ease;
     }
 
     button {
@@ -51,7 +55,7 @@
 <body>
   <div class="wrapper">
     <textarea placeholder="Введите текст..."></textarea>
-    <div class="button-container">
+    <div class="button-container" id="buttonContainer">
       <button onclick="handleSubmit()">Отправить</button>
     </div>
   </div>
@@ -62,14 +66,22 @@
       alert('Отправлено: ' + text);
     }
 
-    // Приведение wrapper к видимой высоте окна (обновляется при появлении клавиатуры)
-    function adjustHeight() {
-      document.querySelector('.wrapper').style.height = window.innerHeight + 'px';
-    }
+    // Поддержка клавиатуры: двигать кнопку над клавиатурой
+    const buttonContainer = document.getElementById('buttonContainer');
 
-    window.addEventListener('resize', adjustHeight);
-    window.addEventListener('orientationchange', adjustHeight);
-    window.addEventListener('load', adjustHeight);
+    if (window.visualViewport) {
+      const updatePosition = () => {
+        const viewportHeight = window.visualViewport.height;
+        const layoutHeight = window.innerHeight;
+        const keyboardHeight = layoutHeight - viewportHeight;
+
+        buttonContainer.style.transform = `translateY(-${keyboardHeight}px)`;
+      };
+
+      window.visualViewport.addEventListener('resize', updatePosition);
+      window.visualViewport.addEventListener('scroll', updatePosition);
+      window.addEventListener('load', updatePosition);
+    }
   </script>
 </body>
 </html>
