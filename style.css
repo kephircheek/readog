@@ -16,12 +16,12 @@ body * {
   width: 100%;
   box-sizing: border-box;
   background-color: #fdfbf2;
+  max-width: 800px;
 }
 
 main {
   padding: 10px;
   margin: 0;
-  max-width: 800px;
   align-items: center;
   display: flex;
   flex-direction: column;
