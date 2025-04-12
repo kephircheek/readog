@@ -2,7 +2,7 @@ function prependToStoryHistory(md5) {
     const history = JSON.parse(localStorage.getItem(storyHistoryKey())) || [];
     history.unshift(md5);
     const uniqueHistory = [...new Set(history)];
-    if (uniqueHistory.length > 5) {
+    if (uniqueHistory.length > 3) {
         uniqueHistory.pop();
     }
     localStorage.setItem(storyHistoryKey(), JSON.stringify(uniqueHistory));
