@@ -74,6 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("textInput").addEventListener('input', function(event) {
+        event.target.value = 'innerHeight = ' + `${window.innerHeight}px`
+    })
+})
+
 function calculateMD5(text) {
     return CryptoJS.MD5(text).toString();
 }
