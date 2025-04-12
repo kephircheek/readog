@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById("textInput").addEventListener('input', function(event) {
+    document.getElementById("textInput").addEventListener('focus', function(event) {
         event.target.value = 'innerHeight = ' + `${window.innerHeight}px`
     })
-    document.getElementById("textInput").addEventListener('change', function(event) {
+    document.getElementById("textInput").addEventListener('blur', function(event) {
         event.target.value = 'innerHeight = ' + `${window.innerHeight}px`
     })
 })
