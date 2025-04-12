@@ -11,7 +11,7 @@ function getStory(md5) {
 }
 
 function setRealViewportHeight() {
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`)
+    document.documentElement.style.setProperty('--vh', `${window.visualViewport.height}px`)
 }
 
 setRealViewportHeight();
