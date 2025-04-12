@@ -76,13 +76,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("textInput").addEventListener('focus', function(event) {
-        event.target.value = 'innerHeight = ' + `${window.innerHeight}px`
+        event.target.value = 'visualViewport = ' + `${window.visualViewport.height}px`
     })
 })
 
 function showInnerHeight() {
     const target = document.getElementById("textInput")
-    target.value = 'innerHeight = ' + `${window.innerHeight}px`
+    target.value = 'visualViewport = ' + `${window.visualViewport.height}px`
 }
 
 function calculateMD5(text) {
