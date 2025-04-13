@@ -61,14 +61,20 @@
 
   <script>
     function handleSubmit() {
-      const text = document.querySelector('textarea').value;
+      const textarea = document.querySelector('textarea')
+      const text = textarea.value;
       alert('Отправлено: ' + text);
+      textarea.value = ""
     }
 
     const buttonContainer = document.getElementById('buttonContainer');
 
     if (window.visualViewport) {
-      const updatePosition = () => {
+      const updatePosition = (event) => {
+        const textarea = document.querySelector('textarea')
+        const text = textarea.value;
+        textarea.value = text + "\n" + event.type
+        console.log(event.type)
         const viewportHeight = window.visualViewport.height;
         const layoutHeight = window.innerHeight;
         const keyboardHeight = layoutHeight - viewportHeight;
